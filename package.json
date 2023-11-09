@@ -1,0 +1,27 @@
+{
+    "name": "jvoucher-api",
+    "version": "1.1.1",
+    "description": "A JVoucher API integrate with paystage.net",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Paystage",
+    "license": "ISC",
+    "devDependencies": {
+        "ts-node": "^10.9.1",
+        "tsup": "^7.2.0",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "@types/crypto-js": "^4.2.1",
+        "axios": "^1.6.1",
+        "crypto-js": "^4.2.0"
+    }
+}
