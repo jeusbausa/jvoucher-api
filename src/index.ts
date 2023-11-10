@@ -125,7 +125,7 @@ export class Jpay {
         redirect_url: payload.details.redirectUrl,
         amount: payload.details.amount,
         method: TRANSACTION_METHOD.LOCAL_BANK_TRANSFER,
-        currency: CURRENCY.JPY,
+        currency: payload.details.currency,
         receiving_currency: CURRENCY.JPY,
       },
     });
