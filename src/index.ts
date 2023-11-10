@@ -6,6 +6,7 @@ const DEPOSIT_INTENT = "deposit/intent";
 const TRANSACTION_METHOD = {
   LOCAL_BANK_TRANSFER: "local_bank_transfer",
   E_WALLET: "e_wallet",
+  CREDIT_DEBIT_CARD: "credit_debit_card",
 };
 
 const SOLUTION = {
@@ -109,22 +110,24 @@ export class Jpay {
       referenceNo: payload.details.referenceNo,
     }).post(DEPOSIT_INTENT, {
       customer: {
-        addressLine1: payload.customer.addressLine1,
+        address_line_1: payload.customer.addressLine1,
         city: payload.customer.city,
         country: payload.customer.country,
         email: payload.customer.email,
-        firstName: payload.customer.firstName,
-        lastName: payload.customer.lastName,
+        first_name: payload.customer.firstName,
+        last_name: payload.customer.lastName,
         mobile: payload.customer.mobile,
         state: payload.customer.state,
         zip: payload.customer.zip,
       },
-      referenceNo: payload.details.referenceNo,
-      redirectUrl: payload.details.redirectUrl,
-      amount: payload.details.amount,
-      method: TRANSACTION_METHOD.LOCAL_BANK_TRANSFER,
-      currency: CURRENCY.JPY,
-      receiving_currency: CURRENCY.JPY,
+      details: {
+        reference_no: payload.details.referenceNo,
+        redirect_url: payload.details.redirectUrl,
+        amount: payload.details.amount,
+        method: TRANSACTION_METHOD.LOCAL_BANK_TRANSFER,
+        currency: CURRENCY.JPY,
+        receiving_currency: CURRENCY.JPY,
+      },
     });
   }
 }
@@ -144,23 +147,23 @@ export class Gcash {
       referenceNo: payload.details.referenceNo,
     }).post(DEPOSIT_INTENT, {
       customer: {
-        addressLine1: payload.customer.addressLine1,
+        address_line_1: payload.customer.addressLine1,
         city: payload.customer.city,
         country: payload.customer.country,
         email: payload.customer.email,
-        firstName: payload.customer.firstName,
-        lastName: payload.customer.lastName,
+        first_name: payload.customer.firstName,
+        last_name: payload.customer.lastName,
         mobile: payload.customer.mobile,
         state: payload.customer.state,
         zip: payload.customer.zip,
       },
       details: {
-        referenceNo: payload.details.referenceNo,
-        redirectUrl: payload.details.redirectUrl,
+        reference_no: payload.details.referenceNo,
+        redirect_url: payload.details.redirectUrl,
         amount: payload.details.amount,
         solution: SOLUTION.GCASH,
         method: TRANSACTION_METHOD.E_WALLET,
-        currency: CURRENCY.PHP,
+        currency: payload.details.currency,
       },
     });
   }
@@ -181,23 +184,22 @@ export class Dixonpay {
       referenceNo: payload.details.referenceNo,
     }).post(DEPOSIT_INTENT, {
       customer: {
-        addressLine1: payload.customer.addressLine1,
+        address_line_1: payload.customer.addressLine1,
         city: payload.customer.city,
         country: payload.customer.country,
         email: payload.customer.email,
-        firstName: payload.customer.firstName,
-        lastName: payload.customer.lastName,
+        first_name: payload.customer.firstName,
+        last_name: payload.customer.lastName,
         mobile: payload.customer.mobile,
         state: payload.customer.state,
         zip: payload.customer.zip,
       },
       details: {
-        referenceNo: payload.details.referenceNo,
-        redirectUrl: payload.details.redirectUrl,
+        reference_no: payload.details.referenceNo,
+        redirect_url: payload.details.redirectUrl,
         amount: payload.details.amount,
         currency: payload.details.currency,
-        solution: SOLUTION.GCASH,
-        method: TRANSACTION_METHOD.E_WALLET,
+        method: TRANSACTION_METHOD.CREDIT_DEBIT_CARD,
       },
     });
   }
